@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,8 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tka.TeamTracker.entity.Country;
 import com.tka.TeamTracker.entity.Employee;
+import com.tka.TeamTracker.entity.Registration;
 import com.tka.TeamTracker.service.MainService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("API")
 public class MainController {
@@ -101,9 +104,9 @@ public class MainController {
 	}
 	
 	@PostMapping("loginAPI")
-	public ResponseEntity<Map> loginApi(@RequestBody Employee emp){
+	public ResponseEntity<Map> loginApi(@RequestBody Registration rg ){
 		
-		Map map=service.loginApi(emp);
+		Map map=service.loginApi(rg);
 		return ResponseEntity.ok(map);
 		
 	}

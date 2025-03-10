@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.tka.TeamTracker.dao.MainDao;
 import com.tka.TeamTracker.entity.Country;
 import com.tka.TeamTracker.entity.Employee;
+import com.tka.TeamTracker.entity.Registration;
 
 @Service
 public class MainService {
@@ -87,18 +88,17 @@ public class MainService {
 		return emp;
 	}
 
-	public Map loginApi(Employee emp) {
+	public Map loginApi(Registration rg) {
 		
-		Employee e1=dao.loginApi(emp);
+		Registration r1=dao.loginApi(rg);
 		Map map=new HashMap();
 		
-		if(Objects.isNull(e1)) {
+		if(Objects.isNull(r1)) {
 			map.put("msg", "Invalid User");
-			map.put("user",e1);
-			}
+			map.put("user",r1);}
 		else {
 			map.put("msg","Valid User");
-			map.put("user",e1);
+			map.put("user",r1);
 		}
 		return map;
 	}

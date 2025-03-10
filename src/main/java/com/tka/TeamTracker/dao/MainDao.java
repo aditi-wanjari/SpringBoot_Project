@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.tka.TeamTracker.entity.Country;
 import com.tka.TeamTracker.entity.Employee;
+import com.tka.TeamTracker.entity.Registration;
 
 @Repository
 public class MainDao {
@@ -295,20 +296,20 @@ public class MainDao {
 		return emp;
 	}
 
-	public Employee loginApi(Employee emp) {
+	public Registration loginApi(Registration rg) {
 		
 		Session session=null;
 		Transaction trans=null;
-		String hqlquery="from Employee where emailid=:emailid and mobileno=:mobileno";
-		Employee e1=null;
+		String hqlquery="from Registration where emailid=:emailid and password=:password";
+		Registration r1=null;
 		
 		try {
 			session=factory.openSession();
 			trans=session.beginTransaction();
-			Query<Employee> query=session.createQuery(hqlquery, Employee.class);
-			query.setParameter("emailid",emp.getEmailid());
-			query.setParameter("mobileno",emp.getMobileno());
-			e1=query.uniqueResult();
+			Query<Registration> query=session.createQuery(hqlquery, Registration.class);
+			query.setParameter("emailid",rg.getEmailid());
+			query.setParameter("password",rg.getPassword());
+			r1=query.uniqueResult();
 			trans.commit();
 			
 		}catch(Exception e) {
@@ -319,7 +320,7 @@ public class MainDao {
 			if(session!=null)
 				session.close();
 		}
-		return e1;
+		return r1;
 	}
 
 	public List<Employee> getList_Salary(double s1, double s2) {
